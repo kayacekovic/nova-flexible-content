@@ -137,13 +137,15 @@ class Flexible extends Field
      *
      * @return $this
      */
-    public function confirmRemove($label = '', $yes = 'Delete', $no = 'Cancel')
+    public function confirmRemove($label = '', $yes = 'Delete', $no = 'Cancel', $deletable = true, $unableToDeleteMessage = '')
     {
         return $this->withMeta([
             'confirmRemove' => true,
             'confirmRemoveMessage' => $label,
             'confirmRemoveYes' => $yes,
             'confirmRemoveNo' => $no,
+            'deletable' => $deletable,
+            'unableToDeleteMessage' => $unableToDeleteMessage,
         ]);
     }
 

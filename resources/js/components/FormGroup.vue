@@ -68,6 +68,8 @@
                             :message="field.confirmRemoveMessage"
                             :yes="field.confirmRemoveYes"
                             :no="field.confirmRemoveNo"
+                            :deletable="field.deletable"
+                            :unableToDeleteMessage="field.unableToDeleteMessage"
                         />
                     </div>
 
