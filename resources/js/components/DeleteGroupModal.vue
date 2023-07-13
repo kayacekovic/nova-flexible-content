@@ -7,7 +7,13 @@
       <slot>
         <ModalHeader v-text="__('Delete Group')" />
         <ModalContent>
-            <p class="leading-normal" v-if="message">
+            <p class="leading-normal" v-if="!deletable && unableToDeleteMessage">
+                {{ unableToDeleteMessage }}
+            </p>
+            <p class="leading-normal" v-else-if="!deletable">
+                {{ __('Unable to delete the group, you are not authorized') }}
+            </p>
+            <p class="leading-normal" v-else-if="message">
                 {{ message }}
             </p>
             <p class="leading-normal" v-else>
@@ -32,7 +38,7 @@
             ref="confirmButton"
             dusk="confirm-delete-button"
             :processing="working"
-            :disabled="working"
+            :disabled="working || !deletable"
             type="submit"
           >
             {{ yes }}
@@ -45,7 +51,7 @@
 
 <script>
 export default {
-    props: ['message', 'yes', 'no'],
+    props: ['message', 'yes', 'no', 'deletable', 'unableToDeleteMessage'],
 
     emits: ['close', 'confirm'],
 
